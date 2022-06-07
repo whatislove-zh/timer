@@ -15,6 +15,12 @@ body {
 .timeContainer {
   display: flex;
 }
+.buttons{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
 
 .hour,
 .minutes,
@@ -38,15 +44,17 @@ body {
 }
 
 .pause,
-.stop {
+.stop,
+.interval {
   margin-left: 15px;
 }
 
 .start,
 .pause,
-.stop {
+.stop,
+.interval {
   height: 35px;
-  width: 90px;
+  width: 95px;
   background: none;
   border-radius: 15px;
   border: 1px solid rgb(0, 0, 0);
@@ -56,8 +64,59 @@ body {
 
 .start:hover,
 .pause:hover,
-.stop:hover {
-    background: rgba(255, 255, 255, 0.218);
+.stop:hover,
+.interval:hover {
+  background: rgba(255, 255, 255, 0.218);
 }
 
+.results {
+  position: absolute;
+  
+  width: 200px;
+  left: 1%;
+  bottom: 0;
+  border: 1px solid black;
+}
 
+.results h3 {
+  border-bottom: 1px solid black;
+  text-align: center;
+  
+}
+.resultFields {
+  text-align: center;
+  overflow:auto;
+  height: 170px;
+}
+
+@media (max-width: 880px) {
+  .resultFields {
+    height: 130px;
+  }
+}
+
+@media (max-width: 480px) {
+  .start,
+  .pause,
+  .stop,
+  .interval {
+    font-size: 20px;
+    height: 27px;
+    width: 80px;
+  }
+  .hour,
+.minutes,
+.second,
+.msecond{
+  font-size: 40px;
+  height: 80px;
+  width: 80px;
+}
+}
+
+@media (max-width: 364px) {
+  .interval{
+    margin-top: 20px;
+    margin-right: 12px;
+  }
+}

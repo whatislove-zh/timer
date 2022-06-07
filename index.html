@@ -9,16 +9,24 @@
     <title>Timer</title>
   </head>
   <body>
+
     <div class="timeContainer">
       <div class="hour">00</div>
       <div class="minutes">00</div>
       <div class="second">00</div>
-      <div class="msecond">99</div>
+      <div class="msecond">00</div>
     </div>
+
     <div class="buttons">
         <button class="start">Start</button>
         <button class="pause">Pause</button>
         <button class="stop">Stop</button>
+        <button class="interval" disabled = "true">Interval</button>
+    </div>
+
+    <div class="results">
+      <h3>Your results</h3>
+      <div class="resultFields"></div>
     </div>
 
     <script src="/app.js"></script>

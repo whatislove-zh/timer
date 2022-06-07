@@ -6,60 +6,58 @@ const mSecond = document.querySelector(".msecond");
 const start = document.querySelector(".start");
 const pause = document.querySelector(".pause");
 const stop = document.querySelector(".stop");
+const intervalButton = document.querySelector(".interval");
+
+const resultFields = document.querySelector(".resultFields");
 
 let msCounter = 0;
 let sCounter = 0;
 let mCounter = 0;
 let hCounter = 0;
 let interval;
+let intervalWin;
+let intervalCounter = 0;
+
+const belowZeroOrNot = (a) => {
+  if (a < 9) {
+    return "0" + a;
+  } else {
+    return a;
+  }
+}
 
 const startTime = () => {
+  intervalButton.removeAttribute('disabled');
   //милисекунды**********************************
+  intervalWin = `${belowZeroOrNot(hCounter)}:${belowZeroOrNot(mCounter)}:${belowZeroOrNot(sCounter)}:${belowZeroOrNot(msCounter)}`;
   msCounter++;
-  if (msCounter <= 9) {
-    mSecond.textContent = "0" + msCounter;
-  }
-  if (msCounter > 9) {
-    mSecond.textContent = msCounter;
-  }
+  mSecond.textContent = belowZeroOrNot(msCounter);
+
   if (msCounter > 99) {
     //секунды************************************
     sCounter++;
-    if (sCounter <= 9) {
-      second.textContent = "0" + sCounter;
-    }
-    if (sCounter > 9) {
-      second.textContent = sCounter;
-    }
+    second.textContent = belowZeroOrNot(sCounter);
     msCounter = 0;
     mSecond.textContent = "0" + msCounter;
+
     if (sCounter > 59) {
       //минуты**************************************
       mCounter++;
-      if (mCounter <= 9) {
-        minutes.textContent = "0" + mCounter;
-      }
-      if (mCounter > 9) {
-        minutes.textContent = mCounter;
-      }
+      minutes.textContent = belowZeroOrNot(mCounter);
       sCounter = 0;
       second.textContent = "0" + sCounter;
+
       if (mCounter > 59) {
         //часы********************************************
         hCounter++;
-        if (hCounter <= 9) {
-          hour.textContent = "0" + hCounter;
-        }
-        if (hCounter > 9) {
-          hour.textContent = hCounter;
-        }
+        hour.textContent = belowZeroOrNot(hCounter);
         mCounter = 0;
         minutes.textContent = "0" + mCounter;
       }
     }
   }
 };
-// кнопки*******************************
+// кнопки*************************************************
 start.addEventListener("click", () => {
   clearInterval(interval);
   interval = setInterval(startTime, 10);
@@ -70,6 +68,7 @@ pause.addEventListener("click", () => {
 });
 
 stop.addEventListener("click", () => {
+  intervalButton.setAttribute('disabled', true);
   clearInterval(interval);
   msCounter = 0;
   sCounter = 0;
@@ -80,3 +79,12 @@ stop.addEventListener("click", () => {
   second.textContent = "00";
   mSecond.textContent = "00";
 });
+
+intervalButton.addEventListener("click", () => {
+  const block = document.createElement("div");
+  intervalCounter++;
+  block.textContent = `Time ${intervalCounter}: ${intervalWin}`;
+  resultFields.append(block);
+});
+
+
