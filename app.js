@@ -7,6 +7,7 @@ const start = document.querySelector(".start");
 const pause = document.querySelector(".pause");
 const stop = document.querySelector(".stop");
 const intervalButton = document.querySelector(".interval");
+const clear = document.querySelector(".clear")
 
 const resultFields = document.querySelector(".resultFields");
 
@@ -19,7 +20,7 @@ let intervalWin;
 let intervalCounter = 0;
 
 const belowZeroOrNot = (a) => {
-  if (a < 9) {
+  if (a <= 9) {
     return "0" + a;
   } else {
     return a;
@@ -78,6 +79,7 @@ stop.addEventListener("click", () => {
   minutes.textContent = "00";
   second.textContent = "00";
   mSecond.textContent = "00";
+
 });
 
 intervalButton.addEventListener("click", () => {
@@ -86,5 +88,10 @@ intervalButton.addEventListener("click", () => {
   block.textContent = `Time ${intervalCounter}: ${intervalWin}`;
   resultFields.append(block);
 });
+
+clear.addEventListener("click", () => {
+  resultFields.innerHTML = '';
+  intervalCounter = 0;
+})
 
 
